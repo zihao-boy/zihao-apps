@@ -1,0 +1,10 @@
+version: "2"
+services:
+    - redis:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/redis:6.2
+        volumes: []
+        ports:
+            - 6379:6379
+        extra_hosts: []
+        environment:
+            - --param:--requirepass "hc12345678"

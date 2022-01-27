@@ -1,0 +1,12 @@
+version: "2"
+services:
+    - nginx:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/nginx:1.21
+        volumes:
+            - /home/data/web:/home/data/web
+            - /home/data/nginx:/etc/nginx/conf.d
+            - /zihao/nginx/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - 80:80
+        extra_hosts: []
+        environment: []
