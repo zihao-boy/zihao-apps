@@ -1,6 +1,6 @@
 version: "2"
 services:
-    - mqtt:
+    - lanproxyserver:
         image: franklin5/lanproxy-server
         volumes:
             - /home/data/lanproxy/config-data:/root/.lanproxy

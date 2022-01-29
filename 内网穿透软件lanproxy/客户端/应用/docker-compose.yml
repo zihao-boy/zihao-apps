@@ -1,6 +1,6 @@
 version: "2"
 services:
-    - mqtt:
+    - lanproxyclient:
         image: franklin5/lanproxy-client
         volumes: []
         ports: []
