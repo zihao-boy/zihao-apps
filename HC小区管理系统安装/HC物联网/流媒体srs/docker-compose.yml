@@ -1,0 +1,11 @@
+version: "2"
+services:
+    - srs:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/srs:V20220119190543
+        volumes: []
+        ports:
+            - 8000:8000/udp
+            - 1985:1985
+            - 1935:1935
+        extra_hosts: []
+        environment: []

@@ -1,0 +1,25 @@
+version: "2"
+services:
+    - things:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/things:V20220129105339
+        volumes: []
+        ports:
+            - 20000-21000:20000-21000/udp
+            - 5060:5060/udp
+            - 9999:9999
+        extra_hosts:
+            - dev.redis.java110.com:192.168.99.201
+            - dev.db.java110.com:192.168.99.201
+            - iot.homecommunity.cn:192.168.99.201
+            - things.homecommunity.cn:192.168.99.201
+            - mqtt.homecommunity.cn:192.168.99.201
+        environment:
+            - pushRtmpAddress:rtmp://123.57.7.9:1935/live/
+            - pullRtmpAddress:webrtc://123.57.7.9:1985/live/
+            - streamMediaIp:192.168.99.201
+            - ACTIVE:zihao
+            - mysqlpwd:hc_things12345678
+            - mqttclientid:java110-client-id10
+            - MIN_MEM:-Xms1024m
+            - MAX_MEM:-Xmx1024m
+            - redispwd:whfredis521
