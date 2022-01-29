@@ -1,0 +1,15 @@
+version: "2"
+services:
+    - mqtt:
+        image: franklin5/lanproxy-server
+        volumes:
+            - /home/data/lanproxy/config-data:/root/.lanproxy
+        ports:
+            - 8090:8090
+            - 4900:4900
+            - 4993:4993
+            - 9000-9100:9000-9100
+        extra_hosts: []
+        environment:
+            - LANPROXY_USERNAME:admin
+            - LANPROXY_PASSWORD:admin

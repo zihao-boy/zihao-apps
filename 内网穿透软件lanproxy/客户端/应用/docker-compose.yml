@@ -1,0 +1,10 @@
+version: "2"
+services:
+    - mqtt:
+        image: franklin5/lanproxy-client
+        volumes: []
+        ports: []
+        extra_hosts: []
+        environment:
+            - LANPROXY_KEY:input_your_key
+            - LANPROXY_HOST:input_your_host
