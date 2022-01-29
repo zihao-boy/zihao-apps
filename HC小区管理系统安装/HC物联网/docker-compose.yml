@@ -14,8 +14,8 @@ services:
             - things.homecommunity.cn:192.168.99.201
             - mqtt.homecommunity.cn:192.168.99.201
         environment:
-            - pushRtmpAddress:rtmp://123.57.7.9:1935/live/
-            - pullRtmpAddress:webrtc://123.57.7.9:1985/live/
+            - pushRtmpAddress:rtmp://srsip:1935/live/
+            - pullRtmpAddress:webrtc://srsip:1985/live/
             - streamMediaIp:192.168.99.201
             - ACTIVE:zihao
             - mysqlpwd:hc_things12345678
