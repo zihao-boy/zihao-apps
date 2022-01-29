@@ -1,0 +1,28 @@
+version: "1.0"
+job:
+    job_name: HC物联网系统
+    git_url: https://gitee.com/java110/MicroCommunityThings.git
+    git_passwd: 无
+    git_username: 无
+    work_dir: /zihao/work
+    job_shell: |-
+        cd back
+        mvn clean install
+    plans:
+        - package_url: back/target/Things.jar
+          package_name: Things
+          path: be8f5693-0115-46bd-b90c-371fd5f50bc3/Things.jar
+          dockerfile_name: things
+          dockerfile: "# 指定源于一个基础镜像\nFROM registry.cn-beijing.aliyuncs.com/sxd/ubuntu-java8:1.0\n# 维护者/拥有者\nMAINTAINER xxx <xxx@xx.com>\n# 从宿主机上传文件 ，这里上传一个脚本，\n# 点击选择业务包上传\n# ADD bin/start_api.sh /root/\nADD be8f5693-0115-46bd-b90c-371fd5f50bc3/Things.jar /root \nADD 9aa8e719-4b76-4e68-98bb-e6de4164143e/start_things_jar.sh /root \n\n# 容器内执行相应指令\nRUN chmod u+x /root/start_things_jar.sh\n# 运行命令\n# CMD <command>   or CMD [<command>]\n# 整个Dockerfile 中只能有一个,多个会被覆盖的\nCMD [\"/root/start_things_jar.sh\", \"Things\"]"
+          start_shell: |-
+            #!/bin/bash
+
+            # min mem
+            min_mem=$MIN_MEM
+
+            max_mem=$MAX_MEM
+
+            active=$ACTIVE
+
+            java -jar -Dspring.profiles.active=$active $min_mem $max_mem /root/Things.jar
+          shell_path: 9aa8e719-4b76-4e68-98bb-e6de4164143e/start_things_jar.sh

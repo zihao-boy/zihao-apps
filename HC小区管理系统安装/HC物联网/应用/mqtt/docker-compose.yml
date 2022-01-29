@@ -1,0 +1,9 @@
+version: "2"
+services:
+    - mqtt:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/artemis:v1.0
+        volumes: []
+        ports:
+            - 1833:1833
+        extra_hosts: []
+        environment: []
