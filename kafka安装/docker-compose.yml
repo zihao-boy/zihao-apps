@@ -1,0 +1,13 @@
+version: "2"
+services:
+    - kafka:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/kafka:latest
+        volumes: []
+        ports:
+            - 9092:9092
+        extra_hosts: []
+        environment:
+            - KAFKA_BROKER_ID:0
+            - KAFKA_ZOOKEEPER_CONNECT:10.100.4.22:2181
+            - KAFKA_ADVERTISED_LISTENERS:PLAINTEXT://10.100.4.22:9092
+            - KAFKA_LISTENERS:PLAINTEXT://0.0.0.0:9092

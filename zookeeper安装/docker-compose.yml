@@ -1,0 +1,9 @@
+version: "2"
+services:
+    - zookeeper:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/zookeeper:3.7.0
+        volumes: []
+        ports:
+            - 2181:2181
+        extra_hosts: []
+        environment: []
