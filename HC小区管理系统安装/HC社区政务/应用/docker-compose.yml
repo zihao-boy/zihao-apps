@@ -1,0 +1,97 @@
+version: "2"
+services:
+    - service-info-gov:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/service-info-gov:V20220104183447
+        volumes: []
+        ports: []
+        extra_hosts:
+            - dev.java110.com:192.168.1.102
+            - dev.db.java110.com:192.168.1.101
+            - dev.redis.java110.com:192.168.1.101
+        environment:
+            - ACTIVE:zihao
+            - mysqlpwd:gov12345678
+            - redispwd:hc12345678
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
+    - service-info-eureka:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/service-info-eureka:V20220105170256
+        volumes: []
+        ports:
+            - 8761:8761
+        extra_hosts:
+            - dev.java110.com:192.168.1.102
+        environment:
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
+            - ACTIVE:zihao
+    - service-info-store:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/service-info-store:V20220104183354
+        volumes: []
+        ports: []
+        extra_hosts:
+            - dev.db.java110.com:192.168.1.101
+            - dev.redis.java110.com:192.168.1.101
+            - dev.java110.com:192.168.1.102
+        environment:
+            - mysqlpwd:gov12345678
+            - redispwd:hc12345678
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
+            - ACTIVE:zihao
+    - service-info-assets:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/service-info-assets:V20220104183302
+        volumes: []
+        ports: []
+        extra_hosts:
+            - dev.java110.com:192.168.1.102
+            - dev.db.java110.com:192.168.1.101
+            - dev.redis.java110.com:192.168.1.101
+        environment:
+            - mysqlpwd:gov12345678
+            - redispwd:hc12345678
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
+            - ACTIVE:zihao
+    - service-info-engine:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/service-info-engine:V20220104183208
+        volumes: []
+        ports: []
+        extra_hosts:
+            - dev.java110.com:192.168.1.102
+            - dev.db.java110.com:192.168.1.101
+            - dev.redis.java110.com:192.168.1.101
+        environment:
+            - mysqlpwd:gov12345678
+            - redispwd:hc12345678
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
+            - ACTIVE:zihao
+    - service-info-cust:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/serivce-info-cust:V20220104183116
+        volumes: []
+        ports: []
+        extra_hosts:
+            - dev.java110.com:192.168.1.102
+            - dev.db.java110.com:192.168.1.101
+            - dev.redis.java110.com:192.168.1.101
+        environment:
+            - ACTIVE:zihao
+            - mysqlpwd:gov12345678
+            - redispwd:hc12345678
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
+    - service-info-api:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/service-info-api:V20220104182954
+        volumes: []
+        ports:
+            - 8101:8101
+        extra_hosts:
+            - dev.java110.com:192.168.1.102
+            - dev.db.java110.com:192.168.1.101
+            - dev.redis.java110.com:192.168.1.101
+        environment:
+            - ACTIVE:zihao
+            - redispwd:hc12345678
+            - MAX_MEM:-Xmx256m
+            - MIN_MEM:-Xms256m
