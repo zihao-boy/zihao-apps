@@ -1,0 +1,13 @@
+version: "2"
+services:
+    - ruoyi:
+        image: registry.cn-qingdao.aliyuncs.com/homecommunity/ruoyi-admin.jar:V20220211185308
+        volumes: []
+        ports:
+            - 8888:80
+        extra_hosts:
+            - db.rouyi.cn:192.168.31.88
+        environment:
+            - ACTIVE:druid
+            - MIN_MEM:-Xms256m
+            - MAX_MEM:-Xmx256m

@@ -1,0 +1,41 @@
+version: "1.0"
+job:
+    job_name: RuoYi
+    git_url: https://gitee.com/y_project/RuoYi.git
+    git_passwd: 无
+    git_username: 无
+    work_dir: /home/zihao/ruoyi
+    job_shell: mvn clean install
+    plans:
+        - package_url: ruoyi-admin/target/ruoyi-admin.jar
+          package_name: ruoyi-admin.jar
+          path: 1c1c1f42-e953-4ced-9bfd-fde268e64770/ruoyi-admin.jar
+          dockerfile_name: ruoyi-admin.jar
+          dockerfile: |
+            # 指定源于一个基础镜像
+            FROM registry.cn-beijing.aliyuncs.com/sxd/ubuntu-java8:1.0
+            # 维护者/拥有者
+            MAINTAINER xxx <xxx@xx.com>
+            # 从宿主机上传文件 ，这里上传一个脚本，
+            # 具体脚本可以去业务包上传后复制路径
+            ADD 1c1c1f42-e953-4ced-9bfd-fde268e64770/ruoyi-admin.jar /root/
+            # 从宿主机上传文件 ，这里上传一个业务文件，
+            # 具体脚本可以去业务包上传后复制路径
+            ADD 8368aeaf-fa35-4805-8d62-4c0e636cd2ec/start_ruoyi-admin.jar.sh /root/
+            # 容器内执行相应指令
+            RUN chmod u+x /root/start_ruoyi-admin.jar.sh
+            # 运行命令
+            # CMD <command>   or CMD [<command>]
+            # 整个Dockerfile 中只能有一个,多个会被覆盖的
+            CMD ["/root/start_ruoyi-admin.jar.sh"]
+          start_shell: |-
+            #!/bin/bash
+            # 最小内存
+            min_mem=$MIN_MEM
+            # 最大内存
+            max_mem=$MAX_MEM
+            # spring boot 配置文件
+            active=$ACTIVE
+            # java启动脚本
+            java -jar -Dspring.profiles.active=$active $min_mem $max_mem /root/ruoyi-admin.jar
+          shell_path: 8368aeaf-fa35-4805-8d62-4c0e636cd2ec/start_ruoyi-admin.jar.sh
